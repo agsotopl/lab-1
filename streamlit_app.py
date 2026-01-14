@@ -19,6 +19,15 @@ else:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
 
+    # Validate the API key immediately by making a lightweight request.
+    try:
+        with st.spinner("Validating OpenAI API key..."):
+            client.models.list()
+        st.success("OpenAI API key validated.")
+    except Exception:
+        st.error("Invalid OpenAI API key or network error. Please check your key and try again.")
+        st.stop()
+
     # Let the user upload a file via `st.file_uploader`.
     uploaded_file = st.file_uploader(
         "Upload a document (.txt or .md)", type=("txt", "md")
