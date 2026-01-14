@@ -53,7 +53,7 @@ else:
 
         # Generate an answer using the OpenAI API.
         stream = client.chat.completions.create(
-            model=" gpt-5-chat-latest",
+            model=" gpt-5-nano",
             messages=messages,
             stream=True,
         )
